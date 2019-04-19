@@ -9,29 +9,29 @@ var Todo = require('./models/todo');
 // });
 app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost:27017/Todo",{ useNewUrlParser: true});
-app.get('/', function(req , res){
+app.get('/todo', function(req , res){
     Todo.find({}, function(err, data){
         if(err){
             console.log(err);
         }else{
             res.status(200).json(data);
-            console.log(data);
+            // console.log(data);
         }
     });
     // res.send("yo");
 })
-app.post('/add', function(req , res){
+app.post('/todo', function(req , res){
     var newTodo = req.body.name;
     Todo.create(newTodo, function(err, data){
         if(err){
             console.log(err);
         }else{
             res.status(201).json(data);
-            console.log(data);
+            // console.log(data);
         }
     })
 });
-app.delete('/delete/:id', function(req , res){
+app.delete('/todo/delete/:id', function(req , res){
     Todo.findByIdAndDelete({ _id : req.params.id}, function(err, data){
         if(err){
             console.log(err);
