@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import { TodoService } from './todos/todo.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { TodoListComponent } from './todos/todo-list/todo-list.component';
     AppRoutingModule,
     RouterModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
