@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express(),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var Todo = require('./models/todo');
 
 // Todo.create({name : "Complete internship task"},function(err){
@@ -11,6 +11,8 @@ var Todo = require('./models/todo');
 //     console.log("created");
 // });
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 mongoose.connect("mongodb://localhost:27017/angular-todo",{ useNewUrlParser: true});
 app.get('/todo', function(req , res){
     Todo.find({}, function(err, data){
@@ -24,7 +26,12 @@ app.get('/todo', function(req , res){
     // res.send("yo");
 })
 app.post('/todo', function(req , res){
-    var newTodo = req.body.name;
+    console.log(req.body.name);
+    console.log(req.params);
+    var newTodo = {
+        "name" : req.body.name 
+    };
+    // console.log(newTodo);
     Todo.create(newTodo, function(err, data){
         if(err){
             console.log(err);
@@ -43,6 +50,6 @@ app.delete('/todo/delete/:id', function(req , res){
         }
     });
 })
-app.listen(process.env.PORT || 8000,function(){
+app.listen(8000 , function(){
     console.log("Server Connected!!");
 });

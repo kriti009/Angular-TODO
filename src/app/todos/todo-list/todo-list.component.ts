@@ -17,12 +17,6 @@ export class TodoListComponent implements OnInit {
       .getTodos()
       .then((todos: Todo[]) => {
         this.todos = todos.map((todo) => {
-          // if (!todo.phone) {
-          //   contact.phone = {
-          //     mobile: '',
-          //     work: ''
-          //   }
-          // }
           return todo;
         });
       });

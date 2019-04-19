@@ -6,7 +6,7 @@ import { Http, Response } from '@angular/http';
   providedIn: 'root'
 })
 export class TodoService {
-  private todosUrl = '/todo';
+  private todosUrl = 'http://localhost:8000/todo';
   constructor(private http: Http ) { }
   //get ('/todo')
   getTodos(): Promise<void | Todo[]> {
